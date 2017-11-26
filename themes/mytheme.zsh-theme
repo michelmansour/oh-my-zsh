@@ -16,8 +16,8 @@ local current_dir='${PWD/#$HOME/~}'
 
 # Git info.
 local git_info='$(git_prompt_info)'
-ZSH_THEME_GIT_PROMPT_PREFIX=" %{$fg[blue][git:%}"
-ZSH_THEME_GIT_PROMPT_SUFFIX="%{$fg[blue]]$reset_color%}"
+ZSH_THEME_GIT_PROMPT_PREFIX=" %{$fg[blue][git:$fg[white]%}"
+ZSH_THEME_GIT_PROMPT_SUFFIX="%{$reset_color$fg[blue]]$reset_color%}"
 ZSH_THEME_GIT_PROMPT_DIRTY=" %{$fg[red]%}x"
 ZSH_THEME_GIT_PROMPT_CLEAN=" %{$fg[green]%}o"
 
@@ -28,9 +28,13 @@ ZSH_THEME_GIT_PROMPT_CLEAN=" %{$fg[green]%}o"
 #ZSH_THEME_SVN_PROMPT_DIRTY=" %{$fg[red]%}x"
 #ZSH_THEME_SVN_PROMPT_CLEAN=""
 
+local nvm_info='$(nvm_prompt_info)'
+ZSH_THEME_NVM_PROMPT_PREFIX=" %{$fg[blue][nvm:$fg[white]%}"
+ZSH_THEME_NVM_PROMPT_SUFFIX="%{$reset_color$fg[blue]]$reset_color%}"
+
 # Prompt format: \n # USER at MACHINE in DIRECTORY on git:BRANCH STATE [TIME] \n $
+#%{$terminfo[bold]$fg[green]%}%n@$(box_name):\
 PROMPT="
-%{$terminfo[bold]$fg[green]%}%n@$(box_name):\
 %{$terminfo[bold]$fg[yellow]%}${current_dir}%{$reset_color%}\
-${git_info}
+${git_info}${nvm_info}
 %{$terminfo[bold]$fg[white]%}<%*>$ %{$reset_color%}"
